@@ -1,11 +1,8 @@
-import { Badge } from "@/shared/components";
 import { truncateText } from "@/shared/lib";
 import { useLocation } from "react-router-dom";
 
 const BookDetails = () => {
   const { state } = useLocation();
-
-  console.log(state);
   
   return (
     <div className='flex justify-center w-full pt-10'>

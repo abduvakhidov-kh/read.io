@@ -10,12 +10,10 @@ export async function fetchBooks(searchValue: string) {
     if (!response.ok) {
       throw new Error('Network response was not ok.');
     }
-    console.log(response);
     const data = await response.json()
-    console.log(data);
     return data.items;
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return null;
   }
 
