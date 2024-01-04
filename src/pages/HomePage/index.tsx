@@ -1,22 +1,42 @@
 import { BookList } from "@/entities"
 import { Header, SearchInput } from "@/shared/components"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { fetchBooks } from "./api/fetchBooks"
+import { Book } from "@/shared/types"
 
 const navigationList = ['books', 'audiobooks']
 
 const HomePage = () => {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState("")
+  const [books, setBooks] = useState<Book[]>([]);
 
-  const handleSearch = () => {
-    // code
+  useEffect(() => {
+    const fetchBooksData = async () => { 
+      if(searchTerm == "") return
+      
+      const booksData = await fetchBooks(searchTerm)
+      setBooks(booksData)
+    }
+
+    fetchBooksData()
+  }, [])
+  
+
+  const handleSearch = async () => {
+    if(searchTerm == "") return
+    const booksData = await fetchBooks(searchTerm)
+    setBooks(booksData)
   }
+  
   
   return (
     <div className="flex flex-col space-between">
       <Header navigationList={navigationList} />
-      <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleSearch={handleSearch} />
-      <h1 className="px-4 my-4 text-2xl font-bold">Books</h1>
-      <BookList bookList={[ { src: '/', author: "author", title:"title" } ]} title={""} />
+      <div className="flex flex-col my-4">
+        <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleSearch={handleSearch} />
+        <h1 className="px-4 mx-auto my-2 text-2xl font-bold">Books</h1>
+        <BookList bookList={books} title={""} />
+      </div>
     </div>
   )
 } 
