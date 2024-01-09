@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const BookDetails = lazy(() => import('@/pages/BookDetails'));
+const Read = lazy(() => import('@/pages/Read'));
 
 const RoutesProvider = () => {
   return (
@@ -11,6 +12,7 @@ const RoutesProvider = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:id" element={<BookDetails />} />
+          <Route path="/books/:id" element={<Read />} />
           {/* <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} /> */}
           {/* Add more routes as needed */}
