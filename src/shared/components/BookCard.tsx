@@ -10,11 +10,11 @@ function BookCard(props: Book) {
           <img
             src={props.volumeInfo.imageLinks.thumbnail}
             alt={props.volumeInfo.title}
-            className="object-contain max-w-full max-h-full rounded-lg shadow-md"
-          />
+            className="object-contain max-w-full max-h-full transition-all rounded-lg shadow-md group-hover:scale-110"
+            />
         ) : (
           <div className="relative flex items-center justify-center w-1/2 overflow-hidden text-sm text-center text-gray-600 bg-gray-200 rounded-lg shadow-md h-4/5">
-            <div>{truncateText(props.volumeInfo.title, 40)}</div>
+            <div className='line-clamp-2'>{truncateText(props.volumeInfo.title, 40)}</div>
           </div>
         )}
       </div>
