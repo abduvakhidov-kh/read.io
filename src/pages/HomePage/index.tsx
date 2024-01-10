@@ -31,7 +31,6 @@ const HomePage = () => {
   
   return (
     <div className="flex flex-col space-between">
-      <Header navigationList={navigationList} />
       <div className="flex flex-col my-4">
         <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleSearch={handleSearch} />
         <h1 className="px-4 mx-auto my-2 text-2xl font-bold">Books</h1>
